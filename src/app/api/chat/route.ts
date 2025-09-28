@@ -10,11 +10,11 @@ import { HttpResponseOutputParser } from 'langchain/output_parsers';
 import { JSONLoader } from "langchain/document_loaders/fs/json";
 import { RunnableSequence } from '@langchain/core/runnables'
 import { formatDocumentsAsString } from 'langchain/util/document'; 
+import path from "path";  
 
-const loader = new JSONLoader(
-    "src/data/states.json",
-    ["/state", "/code", "/nickname", "/website", "/admission_date", "/admission_number", "/capital_city", "/capital_url", "/population", "/population_rank", "/constitution_url", "/twitter_url"],
-);
+const filePath = path.join(process.cwd(), "src/data/faq.json");
+
+const loader = new JSONLoader(filePath, ["/question", "/answer"]);
 
 export const dynamic = 'force-dynamic'
 
